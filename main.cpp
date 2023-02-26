@@ -3,46 +3,32 @@
 
 using namespace std;
 
-// class tanpa constructor
-
-class Polos {
- public:
-    string dataString;
-    int dataInteger;
-
-};
-
-// class dengan constructor
-
 class Mahasiswa {
-public :
-    string nama;
-    string NIM;
-    string jurusan;
-    double IPK;
-    Mahasiswa(string inputNama, string inputNIM, string inputJurusan, double inputIPK){
-        Mahasiswa::nama = inputNama;
-        Mahasiswa::NIM = inputNIM;
-        Mahasiswa::jurusan = inputJurusan;
-        Mahasiswa::IPK = inputIPK;
+public:
+    string name;
+    string nim;
+    string matkul;
+    int nilai;
 
-        // cara membuatnya bisa juga dengan begini
-
-        cout<< Mahasiswa::nama << endl;
-        cout<< Mahasiswa::NIM  << endl;
-        cout<< Mahasiswa::jurusan  << endl;
-        cout<< Mahasiswa::IPK  << endl;
+    Mahasiswa(string name, string nim, string matkul, int nilai){
+        Mahasiswa::name = name;
+        Mahasiswa::nim = nim;
+        Mahasiswa::matkul = matkul;
+        Mahasiswa::nilai = nilai;
     }
 
-    // constructor dengan parameter
+    // method tanpa parameter dan tanpa return
+    void tampilkanData()
+    {
+        cout << "Nama saya adalah " << name << ", nim " << nim << " telah mengambil matkul " << matkul << " dan memperoleh nilai " << nilai << endl;
+    }
 };
 
-int main(int argc, char const *argv[])
+
+int main ()
 {
-    Mahasiswa mahasiswa1 = Mahasiswa("Shinta", "123456", "teknik informatika", 4.0);
+    Mahasiswa mahasiswa1 = Mahasiswa("shinta", "21120121140093", "DKP", 85);
+    mahasiswa1.tampilkanData();
 
-    Mahasiswa mahasiswa2 = Mahasiswa("Senku", "123457", "teknik perkapalan", 3.9);
-
-
-    return 0;
+return 0;
 }
