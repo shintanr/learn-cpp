@@ -3,76 +3,69 @@
 
 using namespace std;
 
-class Mahasiswa {
+class DenganConstructor {
 public:
-    string name;
-    string nim;
-    string matkul;
-    int nilai;
+    string data;
 
-    Mahasiswa(string name, string nim, string matkul, int nilai){
-        Mahasiswa::name = name;
-        Mahasiswa::nim = nim;
-        Mahasiswa::matkul = matkul;
-        Mahasiswa::nilai = nilai;
+    DenganConstructor (const char* data){
+        DenganConstructor::data = data;
     }
 
-    // method tanpa parameter dan tanpa return
-    void showData()
-    {
-        cout << "Nama saya adalah " << name << ", nim " << nim << " telah mengambil matkul " << matkul << " dan memperoleh nilai " << nilai << endl;
+    void show(){
+    cout << "ini " << DenganConstructor::data << endl;
     }
+};
 
-    // method dengan parameter dan tanpa erturn
-
-    void update(const char* newName)
-    {
-        Mahasiswa::name = newName;
-    }
-
-    // method tanpa parameter dan dengan return
-    string getName ()
-    {
-        return Mahasiswa::name;
-    }
-
-    string getNim ()
-    {
-        return Mahasiswa::nim;
-    }
-
-    string getMatkul ()
-    {
-        return Mahasiswa::matkul;
-    }
-
-    int getNilai()
-    {
-        return nilai;
-    }
+class TanpaConstructor {
+public:
+    string data;
 
 
-    // method dengan parameter dan return
-
-    int bonusNilai(const int &tambahNilai)
-    {
-        return Mahasiswa::nilai + tambahNilai;
+    void show(){
+    cout << "ini " << TanpaConstructor::data << endl;
     }
 };
 
 
-int main ()
+
+int main()
 {
-    Mahasiswa mahasiswa1 = Mahasiswa("shinta", "21120121140093", "DKP", 85);
-    mahasiswa1.showData();
+    DenganConstructor pakai = DenganConstructor("pakai 1");
+    pakai.show();
 
-    mahasiswa1.update("nur");
-    mahasiswa1.showData();
 
-    string dataName = mahasiswa1.getName();
-    cout << "data nama = " << dataName << endl;
-    cout << "data nim = " << mahasiswa1.getNim() << endl;
-    cout << "Nilai akhir " << mahasiswa1.bonusNilai(10) << endl;
+    // yang ini struktur datanya ada di stack
+    DenganConstructor pakai2("pakai 2");
+    pakai2.show();
 
-return 0;
+    // cara membuat objek di heap memory
+    DenganConstructor* pakai3 = new DenganConstructor("pakai 3");
+    (*pakai3).show(); // dengan cara dereference
+    pakai3->show(); // arrow operator. mapping function atau attribute dari pointer
+    cout << pakai3->data << endl;
+
+    // atau
+
+    string data = pakai3->data;
+    cout << data << endl;
+
+
+
+    TanpaConstructor tanpa;
+    tanpa.data = "objek tanpa constructor";
+    tanpa.show();
+
+
+    // tidak bisa atau akan error
+
+    // DenganConstructor pakai4;
+    // pakai4 = DenganConstructor("pakai 4");
+
+
+    // yang ini bisa
+    DenganConstructor* pakai5;
+    pakai5 = new DenganConstructor("pakai 5");
+    pakai5->show();
+
+    return 0;
 }
